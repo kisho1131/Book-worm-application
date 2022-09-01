@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "datastax.astra",
+      "type": "java.lang.String",
+      "description": "Description for datastax.astra."
+    },
+    {
+      "name": "datastax.astra.secure-connect-bundle",
+      "type": "java.lang.String",
+      "description": "Description for datastax.astra.secure-connect-bundle."
+    }
+  ] }

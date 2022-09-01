@@ -1,0 +1,28 @@
+spring:
+  data:
+    cassandra:
+      keyspace-name: bookworm
+      username: FIvWqbfsPKCrhKxTlHZYWcTM
+      password: gRc,spNsblQivDxJp+SskH.kSXvgF4idR.-,_lw-WPfSjUA5bvmtMl1m9J9FqXD_MdNWzmiJMK0y-K8z2qLyxzZaJT7rPXr6H0__LbPByAZFBn75UyPq6v3-tccET6CU
+      schema-action: recreate
+      request:
+        timeout: 10s
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
+  main:
+    allow-circular-references: true
+
+datastax.astra:
+  secure-connect-bundle: secure-connect-book-worm-app.zip
+
+astra.db:
+  id: a2e9625d-6dd2-4d35-bf19-4129789a1c68-1
+  region: asia-south1
+  keyspace: bookworm
+  application:
+    token: AstraCS:FIvWqbfsPKCrhKxTlHZYWcTM:e84955439868d062f2234ba1e25bbd7201b55bffc1bfbca5d0a53e1902113144
+
+datadump.location:
+  author: src/main/resources/cassandra_data_dump/author_data_dump.txt
+  works: src/main/resources/cassandra_data_dump/works_data_dump.txt
