@@ -4,7 +4,7 @@ spring:
       keyspace-name: bookworm
       username: FIvWqbfsPKCrhKxTlHZYWcTM
       password: gRc,spNsblQivDxJp+SskH.kSXvgF4idR.-,_lw-WPfSjUA5bvmtMl1m9J9FqXD_MdNWzmiJMK0y-K8z2qLyxzZaJT7rPXr6H0__LbPByAZFBn75UyPq6v3-tccET6CU
-      schema-action: recreate
+      schema-action: recreate_drop_unused
       request:
         timeout: 10s
       connection:
