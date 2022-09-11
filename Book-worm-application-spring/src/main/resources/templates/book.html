@@ -12,7 +12,7 @@
 <div class="card mb-3" style="max-width: 900px; max-height: 600px; margin-top: 10px;margin-left: 10px" >
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img  th:src = "${coverImage}" src="" alt="..." width="300px" height="400px">
+            <img  th:src = "${coverImage}" src="" alt="..." width="300px" height="400px" style="margin-top: 5px; margin-left: 5px;">
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -20,11 +20,47 @@
                 <p th:text="${book.description}" style="text-align: justify;" class="card-text"></p>
                 <p class="card-text"> <b>Authors : </b> <small class="text-muted" th:text="${book.authorNames}"></small></p>
                 <p class="card-text"> <b> Published Date : </b> <small class="card-text" th:text="${book.publishedDate}"></small></p>
+                <!--User Rating Form -->
+                <form th:if ="${loginId}" th:attr="action=@{/addUserBook}" method="POST">
+                    <div style="margin-top: 8px;" class="form-group">
+                        <label for="startDate">Start Date </label>
+                        <input type="date" class="form-control" id="startDate">
+                    </div>
+                    <div style="margin-top: 8px;" class="form-group">
+                        <label for="completedDate">Completed Date </label>
+                        <input type="date" class="form-control" id="completedDate">
+                    </div>
+                    <div style="margin-top: 8px;" class="form-group">
+                        <label for="readingStatus">Reading Status</label>
+                        <select class="form-control" id="readingStatus">
+                            <option selected value="0">Status</option>
+                            <option value="not_started">Not Started Reading</option>
+                            <option value="reading">Currently Reading</option>
+                            <option value="finished">Finished Reading</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 8px;" class="form-group">
+                        <label for="rating">Rating </label>
+                        <select class="form-control" id="rating">
+                            <option selected value="0">Select Rating</option>
+                            <option value="1">&#128948;</option>
+                            <option value="2">&#128948;&#128948;</option>
+                            <option value="3">&#128948;&#128948;&#128948;</option>
+                            <option value="4">&#128948;&#128948;&#128948;&#128948;</option>
+                            <option value="5">&#128948;&#128948;&#128948;&#128948;&#128948;</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+                <!--User Rating Form Ends -->
             </div>
         </div>
     </div>
 </div>
 <!--First Book Card Ends-->
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
