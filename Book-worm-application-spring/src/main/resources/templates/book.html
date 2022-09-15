@@ -20,19 +20,22 @@
                 <p th:text="${book.description}" style="text-align: justify;" class="card-text"></p>
                 <p class="card-text"> <b>Authors : </b> <small class="text-muted" th:text="${book.authorNames}"></small></p>
                 <p class="card-text"> <b> Published Date : </b> <small class="card-text" th:text="${book.publishedDate}"></small></p>
+
                 <!--User Rating Form -->
+
                 <form th:if ="${loginId}" th:attr="action=@{/addUserBook}" method="POST">
+                    <input type="hidden" th:value ="${book.id}" name="bookId"/>
                     <div style="margin-top: 8px;" class="form-group">
                         <label for="startDate">Start Date </label>
-                        <input type="date" class="form-control" id="startDate">
+                        <input type="date" class="form-control" name ="startDate" id="startDate" th:value="${userBooks.startedDate}">
                     </div>
                     <div style="margin-top: 8px;" class="form-group">
                         <label for="completedDate">Completed Date </label>
-                        <input type="date" class="form-control" id="completedDate">
+                        <input type="date" class="form-control" name ="completedDate" id="completedDate" th:value="${userBooks.completedDate}">
                     </div>
                     <div style="margin-top: 8px;" class="form-group">
                         <label for="readingStatus">Reading Status</label>
-                        <select class="form-control" id="readingStatus">
+                        <select class="form-control"  name = "readingStatus" id="readingStatus" th:field="${userBooks.readingStatus}">
                             <option selected value="0">Status</option>
                             <option value="not_started">Not Started Reading</option>
                             <option value="reading">Currently Reading</option>
@@ -41,7 +44,7 @@
                     </div>
                     <div style="margin-top: 8px;" class="form-group">
                         <label for="rating">Rating </label>
-                        <select class="form-control" id="rating">
+                        <select class="form-control" name ="rating" id="rating" th:field="${userBooks.rating}">
                             <option selected value="0">Select Rating</option>
                             <option value="1">&#128948;</option>
                             <option value="2">&#128948;&#128948;</option>
@@ -53,6 +56,7 @@
                     <div style="margin-top: 10px;">
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 </form>
                 <!--User Rating Form Ends -->
             </div>

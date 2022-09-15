@@ -1,5 +1,8 @@
 package com.bookworm.books;
 
+import com.bookworm.userbooks.UserBooks;
+import com.bookworm.userbooks.UserBooksPrimaryKey;
+import com.bookworm.userbooks.UserBooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -19,6 +22,9 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private UserBooksRepository userBooksRepository;
+
     @GetMapping(value = "/books/{bookId}")
     public String getBook(@PathVariable String bookId, Model model, @AuthenticationPrincipal OAuth2User principal){
         Optional<Book> optionalBook = bookRepository.findById(bookId);
@@ -30,6 +36,16 @@ public class BookController {
             }
             if(principal != null && principal.getAttribute("login")!=null){
                 model.addAttribute("loginId", principal.getAttribute("login"));
+                UserBooksPrimaryKey key = new UserBooksPrimaryKey();
+                key.setBookId(bookId);
+                key.setUserId(principal.getAttribute("login"));
+                Optional<UserBooks> userBooks = userBooksRepository.findById(key);
+                if(userBooks.isPresent()){
+                    model.addAttribute("userBooks", userBooks.get());
+                }else{
+                    model.addAttribute("userBooks", new UserBooks());
+                }
+
             }
             model.addAttribute("coverImage", coverImageUrl);
             model.addAttribute("book", book);

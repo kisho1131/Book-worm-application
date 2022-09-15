@@ -1,33 +1,23 @@
 package com.bookworm.userbooks;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.CassandraType;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.cassandra.core.mapping.*;
 
 import java.time.LocalDate;
 
 @Table(value = "book_by_user_and_bookid")
 public class UserBooks {
 
-    @Autowired
+    @PrimaryKey
     private UserBooksPrimaryKey userBooksPrimaryKey;
 
-    @PrimaryKeyColumn(name = "user_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
-    private String userId;
-
-    @PrimaryKeyColumn(name = "book_id", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
-    private String bookId;
-
     @Column("started_date")
-    @CassandraType(type = CassandraType.Name.TEXT)
+    @CassandraType(type = CassandraType.Name.DATE)
     private LocalDate startedDate;
 
     @Column("completed_date")
-    @CassandraType(type = CassandraType.Name.TEXT)
+    @CassandraType(type = CassandraType.Name.DATE)
     private LocalDate completedDate;
 
     @Column("reading_status")
@@ -38,20 +28,12 @@ public class UserBooks {
     @CassandraType(type = CassandraType.Name.INT)
     private int rating;
 
-    public String getUserId() {
-        return userId;
+    public UserBooksPrimaryKey getUserBooksPrimaryKey() {
+        return userBooksPrimaryKey;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
+    public void setUserBooksPrimaryKey(UserBooksPrimaryKey userBooksPrimaryKey) {
+        this.userBooksPrimaryKey = userBooksPrimaryKey;
     }
 
     public LocalDate getStartedDate() {
