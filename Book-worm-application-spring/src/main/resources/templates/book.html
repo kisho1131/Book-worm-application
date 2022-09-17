@@ -20,7 +20,16 @@
                 <p th:text="${book.description}" style="text-align: justify;" class="card-text"></p>
                 <p class="card-text"> <b>Authors : </b> <small class="text-muted" th:text="${book.authorNames}"></small></p>
                 <p class="card-text"> <b> Published Date : </b> <small class="card-text" th:text="${book.publishedDate}"></small></p>
-
+                <!-- If the user is Not Login Card -->
+                <div th:unless ="${loginId}" class="card">
+                    <strong><h5 class="card-header">Want to Tack this Book ?</h5></strong>
+                    <div class="card-body">
+                        <b><p class="card-text">Please Login to Get Access to Full Application Feature !!</p></b>
+                        <br/>
+                        <a href="/oauth2/authorization/github" class="btn btn-primary">Login via Github </a>
+                    </div>
+                </div>
+                <!-- If the user is Not Login Cards -->
                 <!--User Rating Form -->
 
                 <form th:if ="${loginId}" th:attr="action=@{/addUserBook}" method="POST">
@@ -36,10 +45,10 @@
                     <div style="margin-top: 8px;" class="form-group">
                         <label for="readingStatus">Reading Status</label>
                         <select class="form-control"  name = "readingStatus" id="readingStatus" th:field="${userBooks.readingStatus}">
-                            <option selected value="0">Status</option>
-                            <option value="not_started">Not Started Reading</option>
-                            <option value="reading">Currently Reading</option>
-                            <option value="finished">Finished Reading</option>
+                            <option selected value="4">Status</option>
+                            <option value="Reading">Currently Reading</option>
+                            <option value="Finished">Finished Reading</option>
+                            <option value="Not Started">Not Started Reading</option>
                         </select>
                     </div>
                     <div style="margin-top: 8px;" class="form-group">
