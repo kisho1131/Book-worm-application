@@ -14,10 +14,10 @@ import java.nio.file.Path;
 
 @SpringBootApplication
 @EnableConfigurationProperties(DataStaxAstraProperties.class)
-public class BookWormApplicationSpringApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookWormApplicationSpringApplication.class, args);
+        SpringApplication.run(Application.class, args);
 
     }
 
